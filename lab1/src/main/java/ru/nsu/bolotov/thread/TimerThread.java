@@ -20,14 +20,14 @@ public class TimerThread implements Runnable {
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(UtilConsts.TimeConsts.TIMER_THREAD_DELAY_TIME_IN_MSEC);
                 ++elapsedTimeInSec;
-                if (isSender && TimeUnit.SECONDS.toMillis(elapsedTimeInSec) % UtilConsts.TimeConsts.DELAY_TIME_TO_SENDER_IN_MSEC == 0) {
+                if (isSender && TimeUnit.SECONDS.toMillis(elapsedTimeInSec) % UtilConsts.TimeConsts.DURATION_OF_SENDER_IN_MSEC == 0) {
                     isSender = false;
-                } else if (!isSender && TimeUnit.SECONDS.toMillis(elapsedTimeInSec) % UtilConsts.TimeConsts.DELAY_TIME_TO_RECEIVER_IN_MSEC == 0) {
+                } else if (!isSender && TimeUnit.SECONDS.toMillis(elapsedTimeInSec) % UtilConsts.TimeConsts.DURATION_OF_RECEIVER_IN_MSEC == 0) {
                     isSender = true;
                 }
-                if (elapsedTimeInSec >= UtilConsts.TimeConsts.LIMIT_TIME_IN_SEC) {
+                if (elapsedTimeInSec >= UtilConsts.TimeConsts.APPLICATION_LIFETIME_IN_SEC) {
                     isApplicationStopped = true;
                     Thread.currentThread().interrupt();
                 }

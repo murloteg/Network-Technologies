@@ -1,0 +1,43 @@
+version: 3;
+
+services:
+  first_instance:
+    image: lab1-net-tech
+    container_name: first_instance
+    env_file:
+      - .env
+    networks:
+      - simple_network
+
+  second_instance:
+    image: lab1-net-tech
+    container_name: second_instance
+    env_file:
+      - .env
+    networks:
+      - simple_network
+
+  third_instance:
+    image: lab1-net-tech
+    container_name: third_instance
+    env_file:
+      - .env
+    networks:
+      - simple_network
+
+  fourth_instance:
+    image: lab1-net-tech
+    container_name: fourth_instance
+    env_file:
+      - .env
+    networks:
+      - simple_network
+
+networks:
+  simple_network:
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.150.70.0/16
+        - subnet: 2001:db8:abcd::0/64

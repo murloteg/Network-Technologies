@@ -27,6 +27,8 @@ public class Application {
         InputData input = CmdLineParser.parseInputData(args);
         InetSocketAddress group = new InetSocketAddress(input.ipAddr(), input.port());
         checkIPAddress(group);
+        LOGGER.info("IP: {} is valid multicast IP", group.getAddress());
+
         try (MulticastSocket socket = new MulticastSocket(group.getPort())) {
             LOGGER.info("Socket was created on port: {}", group.getPort());
             ApplicationEntity applicationEntity = new ApplicationEntity();
