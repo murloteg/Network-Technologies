@@ -48,6 +48,7 @@ public class Application {
                     ApplicationEntity entity = receiveData(socket, group);
                     if (!isConnectionExists(entity)) {
                         CONNECTIONS.put(entity, UtilConsts.TimeConsts.CONNECTION_LIFETIME_IN_MSEC);
+                        LOGGER.info(">>> New connection with UUID: {} <<<", entity.getUUID());
                     } else {
                         resetLifetimeOfConnection(entity);
                     }
@@ -118,6 +119,7 @@ public class Application {
             CONNECTIONS.replace(item.getKey(), item.getValue() - elapsedTimeInMsec);
             if (item.getValue() <= 0) {
                 CONNECTIONS.remove(item.getKey());
+                LOGGER.info(">>> Missing connection with UUID: {} <<<", item.getKey().getUUID());
             }
         }
     }
