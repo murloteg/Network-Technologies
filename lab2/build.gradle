@@ -1,5 +1,8 @@
 plugins {
+    id 'groovy'
     id 'java'
+    id 'idea'
+    id 'application'
 }
 
 group = 'ru.nsu.bolotov'
@@ -7,6 +10,10 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+java {
+    sourceCompatibility = 17
 }
 
 dependencies {
@@ -20,6 +27,23 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.36'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+mainClassName = 'ru.nsu.bolotov.application.Application'
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes(
+                'Manifest-Version': '1',
+                'Main-Class': "${mainClassName}"
+        )
+    }
+    archiveBaseName = "${rootProject.name}"
+    tasks.withType(Jar).configureEach {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 test {
