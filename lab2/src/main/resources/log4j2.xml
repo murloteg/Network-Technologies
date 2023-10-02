@@ -7,7 +7,16 @@
     </Appenders>
     <Loggers>
         <!-- avoid duplicated logs with additivity=false -->
-        <Logger name="ru.nsu.bolotov.application.Application" level="info" additivity="false">
+        <Logger name="ru.nsu.bolotov.client.Client" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="ru.nsu.bolotov.server.Server" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="ru.nsu.bolotov.handler.ClientHandlerThread" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="ru.nsu.bolotov.handler.BaudRateThread" level="info" additivity="false">
             <AppenderRef ref="LogToConsole"/>
         </Logger>
         <Root level="error">
