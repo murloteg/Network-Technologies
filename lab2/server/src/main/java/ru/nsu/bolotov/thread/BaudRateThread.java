@@ -1,4 +1,4 @@
-package ru.nsu.bolotov.handler;
+package ru.nsu.bolotov.thread;
 
 import org.apache.commons.math3.util.Precision;
 import org.slf4j.Logger;

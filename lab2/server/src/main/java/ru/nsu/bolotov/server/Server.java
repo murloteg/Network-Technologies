@@ -4,11 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.nsu.bolotov.exception.FailedDirectoryCreationException;
 import ru.nsu.bolotov.exception.FailedSocketException;
-import ru.nsu.bolotov.handler.ClientHandlerThread;
 import ru.nsu.bolotov.model.ServerInputData;
 import ru.nsu.bolotov.parser.CmdLineParser;
+import ru.nsu.bolotov.thread.ClientHandlerThread;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -22,6 +23,7 @@ public class Server {
         LOGGER.info("Server listens on PORT: {}", serverInputData.port());
         prepareDirectory();
         try (ServerSocket serverSocket = new ServerSocket(serverInputData.port())) {
+            LOGGER.info("Server IP address: {}", InetAddress.getLocalHost());
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 if (clientSocket.isConnected()) {
@@ -30,7 +32,7 @@ public class Server {
                 }
             }
         } catch (IOException exception) {
-            LOGGER.error("IO Exception while server processing client");
+            LOGGER.error("IO Exception in server: {}", exception.getMessage());
             throw new FailedSocketException();
         }
     }

@@ -10,8 +10,7 @@ public final class UtilConsts {
     }
 
     public static final class ConnectionConsts {
-//        public static final int BUFFER_SIZE = 256;
-        public static final int BUFFER_SIZE = 64; // FIXME
+        public static final int BUFFER_SIZE = 30;
 
         private ConnectionConsts() {
             throw new IllegalStateException(StringConsts.INSTANTIATION_MESSAGE);

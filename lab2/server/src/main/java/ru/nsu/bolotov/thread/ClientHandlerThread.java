@@ -1,4 +1,4 @@
-package ru.nsu.bolotov.handler;
+package ru.nsu.bolotov.thread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -12,6 +12,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
@@ -26,7 +27,8 @@ public class Client {
     }
 
     private static void sendFileToServer(ClientInputData clientInputData) {
-        try (Socket clientSocket = new Socket(clientInputData.ipAddr(), clientInputData.port())) {
+        try (Socket clientSocket = new Socket(InetAddress.getByName(clientInputData.ipAddr()), clientInputData.port())) {
+            LOGGER.info("Client IP address: {}", InetAddress.getLocalHost());
             File fileToTransfer = new File(clientInputData.absolutePathToFile());
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             sendRequiredInfoAboutFile(dataOutputStream, fileToTransfer);
@@ -52,7 +54,7 @@ public class Client {
             dataOutputStream.close();
             fileInputStream.close();
         } catch (IOException exception) {
-            LOGGER.error("IO Exception while client sending data to server");
+            LOGGER.error("IO Exception while client sending data to server: {}", exception.getMessage());
             throw new FailedSocketException();
         }
         LOGGER.info("Client finished job successfully!");

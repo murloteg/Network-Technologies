@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(":common")
+}
+
+application {
+    mainClassName = 'ru.nsu.bolotov.server.Server'
+}

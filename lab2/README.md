@@ -39,4 +39,6 @@
         <li><b>Маленький размер файла</b> (0 байт, 1 байт и т.д.);</li>
         <li><b>Большой размер файла</b> (~1 Гб);</li>
     </ul>
+    <h2>Сборка executable jar-ников</h2>
+    <code>./gradlew clean client:shadowJar server:shadowJar</code>
 </span>
