@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.nsu.bolotov'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    implementation 'commons-cli:commons-cli:1.5.0'
+    // https://mvnrepository.com/artifact/dnsjava/dnsjava
+    implementation 'dnsjava:dnsjava:3.5.2'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
